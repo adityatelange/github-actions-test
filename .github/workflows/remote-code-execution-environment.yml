@@ -7,6 +7,9 @@ name: remote-code-execution-environment
 on:
   workflow_dispatch:
 
+env:
+  AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -18,8 +21,7 @@ jobs:
     steps:
       - name: install global deps
         run: |
-          sudo apt install nodejs
-          sudo apt install npm
+          sudo apt install nodejs npm python3 openjdk8
           sudo npm install npm -g
           sudo npm install -g yarn
           
@@ -28,5 +30,10 @@ jobs:
           git clone https://github.com/paulonteri/remote-code-execution-environment.git --depth=1
           cd remote-code-execution-environment
           cd core && yarn install && cd ../frontend && yarn install && cd ..
-          bash run
-      
+          bash run &
+      - name: run ngrok 
+        run: |
+          wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+          unzip ngrok-stable-linux-amd64.zip
+          ./ngrok authtoken ${AUTHTOKEN}
+          ./ngrok http 6500
