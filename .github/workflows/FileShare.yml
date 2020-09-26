@@ -25,13 +25,13 @@ jobs:
           wget ${NGROK_LINUX_ZIP}
           unzip ngrok-stable-linux-amd64.zip
           ./ngrok authtoken ${AUTHTOKEN}
-          pip install browsepy
+          # pip install browsepy
 
       - name: start server
         run: |
-          ./ngrok http 8080 &
+          # ./ngrok http 8080 &
           mkdir public
           df -h public # echos free space
-          timeout 20m browsepy 0.0.0.0 8080 --directory public/ --upload public/
+          # timeout 20m browsepy 0.0.0.0 8080 --directory public/ --upload public/
           rm -rf public/
           ls -la .ngrok2/
