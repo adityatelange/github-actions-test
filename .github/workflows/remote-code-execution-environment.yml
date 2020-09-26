@@ -28,7 +28,5 @@ jobs:
           git clone https://github.com/paulonteri/remote-code-execution-environment.git --depth=1
           cd remote-code-execution-environment
           cd core && yarn install && cd ../frontend && yarn install && cd ..
-      
-      - name: run 
-        run: ./run
+          bash run
       
