@@ -25,15 +25,13 @@ jobs:
           sudo npm install npm -g
           sudo npm install -g yarn
           
-      - name: clone paulonteri/remote-code-execution-environment
+      - name: run
         run: |
           git clone https://github.com/paulonteri/remote-code-execution-environment.git --depth=1
           cd remote-code-execution-environment
-          cd core && yarn install && cd ../frontend && yarn install && cd ..
-          bash run &
-      - name: run ngrok 
-        run: |
           wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
           unzip ngrok-stable-linux-amd64.zip
+          cd core && yarn install && cd ../frontend && yarn install && cd ..
+          bash run &
           ./ngrok authtoken ${AUTHTOKEN}
           ./ngrok http 6500
