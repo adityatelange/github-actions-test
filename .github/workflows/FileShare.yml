@@ -34,4 +34,4 @@ jobs:
           df -h public # echos free space
           # timeout 20m browsepy 0.0.0.0 8080 --directory public/ --upload public/
           rm -rf public/
-          ls -la .ngrok2/
+          ls -la ~/.ngrok2/
