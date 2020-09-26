@@ -1,0 +1,16 @@
+
+name: Neofetch
+
+on:
+  workflow_dispatch:
+    # manual
+
+jobs:
+  execute:
+    name: run
+    runs-on: ubuntu-latest
+    steps:
+      - name: install dependencies
+        run: sudo apt-get install neofetch
+      - name: Neofetch
+        run: neofetch
