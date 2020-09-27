@@ -36,4 +36,4 @@ jobs:
           ./ngrok http 3000 &
           mkdir labfiles
           cd labfiles
-          jupyter lab --port=3000 --ip=0.0.0.0 --no-browser --NotebookApp.token='${JNBPASS}' --NotebookApp.password='${JNBPASS}'
+          jupyter lab --port=3000 --ip="*" --no-browser --NotebookApp.token='' --NotebookApp.password=''
