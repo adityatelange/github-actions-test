@@ -1,0 +1,38 @@
+# This is a basic workflow to help you get started with Actions
+
+name: JupyterNB
+
+on:
+  workflow_dispatch:
+    # enables manual run
+
+env:
+  AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
+  NGROK_LINUX_ZIP: "https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip"
+  # Above url may change upon newer versions available at https://ngrok.com/download
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+         python-version: 3.8 #install the python needed
+      - name: setup
+        run: |
+          wget ${NGROK_LINUX_ZIP}
+          unzip ngrok-stable-linux-amd64.zip
+          ./ngrok authtoken ${AUTHTOKEN}
+          
+      - name: install jupyter nb
+        run: pip3 install --user --no-cache jupyter
+
+      # Runs a set of commands using the runners shell
+      - name: run
+        run: |
+          mkdir labfiles
+          cd labfiles
+          ./ngrok http 3000 &
+          jupyter notebook --port=3000 --ip=0.0.0.0 --no-browser
