@@ -27,7 +27,7 @@ jobs:
           ./ngrok authtoken ${AUTHTOKEN}
           
       - name: install jupyter nb
-        run: pip3 install --user --no-cache jupyterlab
+        run: pip3 install jupyterlab
 
       # Runs a set of commands using the runners shell
       - name: run
