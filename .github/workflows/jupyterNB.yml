@@ -27,7 +27,7 @@ jobs:
           ./ngrok authtoken ${AUTHTOKEN}
           
       - name: install jupyter nb
-        run: pip3 install --user --no-cache jupyter
+        run: pip3 install --user --no-cache jupyterlab
 
       # Runs a set of commands using the runners shell
       - name: run
@@ -35,4 +35,4 @@ jobs:
           ./ngrok http 3000 &
           mkdir labfiles
           cd labfiles
-          jupyter notebook --port=3000 --ip=0.0.0.0 --no-browser
+          jupyter lab --port=3000 --ip=0.0.0.0 --no-browser
