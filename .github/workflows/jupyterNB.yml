@@ -10,6 +10,7 @@ env:
   AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
   NGROK_LINUX_ZIP: "https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip"
   # Above url may change upon newer versions available at https://ngrok.com/download
+  JNBPASS: ${{ secrets.JNBPASS }}
 
 jobs:
   run:
@@ -35,4 +36,4 @@ jobs:
           ./ngrok http 3000 &
           mkdir labfiles
           cd labfiles
-          jupyter lab --port=3000 --ip=0.0.0.0 --no-browser
+          jupyter lab --port=3000 --ip=0.0.0.0 --no-browser --NotebookApp.token='' --NotebookApp.password='${JNBPASS}'
