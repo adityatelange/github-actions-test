@@ -1,0 +1,27 @@
+
+name: Adhrit
+
+on:
+  workflow_dispatch:
+    # manual
+
+jobs:
+  execute:
+    name: run
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: setup python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8 #install the python needed
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        git clone https://github.com/abhi-r3v0/Adhrit.git --depth=1
+    - name: Run Adhrit
+      run: |
+        cd Adhrit
+        python3 run.py
+    
