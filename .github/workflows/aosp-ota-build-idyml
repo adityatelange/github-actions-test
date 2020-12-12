@@ -1,0 +1,20 @@
+
+name: AOSP Build ID
+
+on:
+  workflow_dispatch:
+    # manual
+
+env:
+  IMAGE_ZIP: "https://dl.google.com/dl/android/aosp/redfin-ota-rq1a.201205.011-d13beb06.zip"
+  # Above url may change upon newer versions available at https://developers.google.com/android/ota
+
+jobs:
+  execute:
+    name: run
+    runs-on: ubuntu-latest
+    steps:
+      - name: WGET and UNZIP
+        run: wget ${NGROK_LINUX_ZIP} && unzip *.zip
+      - name: CAT 
+        run: cat */META-INF/com/android/metadata
