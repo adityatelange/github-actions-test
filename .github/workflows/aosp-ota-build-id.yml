@@ -17,4 +17,6 @@ jobs:
       - name: WGET and UNZIP
         run: wget ${IMAGE_ZIP} && unzip *.zip
       - name: CAT 
-        run: cat */META-INF/com/android/metadata
+        run: cat META-INF/com/android/metadata
+      - name: Clean
+        run: rm -rf *
