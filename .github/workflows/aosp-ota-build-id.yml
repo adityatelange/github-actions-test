@@ -15,6 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: WGET and UNZIP
-        run: wget ${NGROK_LINUX_ZIP} && unzip *.zip
+        run: wget ${IMAGE_ZIP} && unzip *.zip
       - name: CAT 
         run: cat */META-INF/com/android/metadata
